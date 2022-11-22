@@ -1,4 +1,4 @@
-package bsuir.kaf.electroniki.repository;
+package bsuir.kaf.electroniki.dao;
 
 import java.sql.Connection;
 import java.util.List;

@@ -1,4 +1,4 @@
-package bsuir.kaf.electroniki.repository;
+package bsuir.kaf.electroniki.dao;
 
 /**
  * An error that is caused when there are problems with data processing getting all the data in the database.

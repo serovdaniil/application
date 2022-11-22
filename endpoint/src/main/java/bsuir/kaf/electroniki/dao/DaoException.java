@@ -1,4 +1,4 @@
-package bsuir.kaf.electroniki.repository;
+package bsuir.kaf.electroniki.dao;
 
 /**
  * The error that is being caused in the dao layer.

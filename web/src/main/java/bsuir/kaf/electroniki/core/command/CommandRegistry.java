@@ -15,11 +15,15 @@ public enum CommandRegistry {
 
     SECOND_PAGE(ShowAuthorizedPage.getInstance(), "second"),
 
-    EDIT_PAGE(ShowEditSafIndPage.getInstance(), "edit"),
+    EDIT_PAGE(ShowEditSafIndPage.getInstance(), "edit_saf_val"),
 
     FIRST_POWER_UNIT_PAGE(ShowFirstPowerUnitPage.getInstance(), "show_first_power_unit"),
 
     SECOND_POWER_UNIT_PAGE(ShowSecondPowerUnitPage.getInstance(), "show_second_power_unit"),
+
+    ADD_SAF_VAL(CreateNewSafValCommand.getInstance(), "add_saf_val"),
+
+    SHOW_TABLE_FOR_SAF_VAL(ShowSafValCommand.getInstance(), "show_table_for_saf_val"),
 
     DEFAULT(ShowMainPage.getInstance(), "");
 

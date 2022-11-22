@@ -8,7 +8,7 @@
 <html lang="ru">
 
 <head>
-    <title>Показатель безопасной эксплуатации энергоблока №2</title>
+    <title>${requestScope.safIndName}</title>
     <style>
         input {
             border-radius: 10px;
@@ -24,7 +24,7 @@
         button {
             display: inline-block;
             width: 125px;
-            height: 35px;
+            height: auto;
             margin-left: 20px;
             font-size: 15px;
             border-radius: 10px;
@@ -35,28 +35,6 @@
             float: left
         }
     </style>
-    <script src="https://www.google.com/jsapi"></script>
-    <script>
-        google.load("visualization", "1", {packages: ["corechart"]});
-        google.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Год', 'Россия', 'США'],
-                ['1860', 1.3, 70],
-                ['1885', 2000, 3120],
-                ['1901', 12170, 9920]
-            ]);
-            var options = {
-                title: 'Добыча нефти',
-                hAxis: {title: 'Год'},
-                vAxis: {title: 'Тыс. тонн'}
-            };
-            var chart = new google.visualization.ColumnChart(document.getElementById('oil'));
-            chart.draw(data, options);
-        }
-    </script>
-
 </head>
 <body>
 <div style="
@@ -67,73 +45,51 @@ border: #4c51da solid 5px;"
 
     <%@include file="/WEB-INF/jsp/common/Header.jsp" %>
 
-    <h2 style="text-align: center">Показатель безопасной эксплуатации энергоблока №2</h2>
+    <h2 style="text-align: center">Показатели безопасной эксплуатации энергоблока №${requestScope.unitId}</h2>
+
+    <h2 style="text-align: center">${requestScope.safIndName}</h2>
 
     <div>
-        <form name="edit-employee" method="post">
-            <div>
-                <c:forEach var="error" items="${employee.errors}">
-                    <p>${error}</p>
-                </c:forEach>
-            </div>
+        <form name="edit-saf_ind" method="post">
             <div>
                 <label>Отчетный период:
-                    <input class="container" type="text" name="lastName" value=""/>
+                    <input class="container" type="text" name="year" value=""/>
                 </label>
             </div>
             <div>
                 <label>Пользователь:
-                    <input class="container" type="text" name="firstName" value=""/>
+                    <input class="container" type="text" name="iserId" value=""/>
                 </label>
             </div>
             <div>
-                <label>Значение:
-                    <input class="container" type="text" name="patronymic" value=""/>
+                <label>Значение для отчетного периода:
+                    <input class="container" type="text" name="value" value=""/>
                 </label>
             </div>
-            <input type="hidden" name="id" value="${employee.id}">
+            <input type="hidden" name="safIndId" value="${requestScope.safIndId}">
+            <input type="hidden" name="unitId" value="${requestScope.unitId}">
+            <input type="hidden" name="safIndName" value="${requestScope.safIndName}">
 
             <div>
-                <button type="submit" class="button" name="command" value="update_employee"
+                <button type="submit" class="button" name="command" value="add_saf_val"
                         formaction="${pageContext.request.contextPath}/controller?">Сохранить
                 </button>
                 <button type="submit" class="button" name="command" value="second"
                         formaction="${pageContext.request.contextPath}/controller?">Назад
                 </button>
             </div>
+            <button type="submit" name="command" value="show_table_for_saf_val&idUnit=${requestScope.unitId}&idSafInd=${requestScope.safIndId}"
+                    formaction="${pageContext.request.contextPath}/controller?command=show_table_for_saf_val&idUnit=${requestScope.unitId}&idSafInd=${requestScope.safIndId}&safIndName=${requestScope.safIndName}">Отобразить значения показателя в таблице
+            </button>
+            <button type="submit" name="command" value="second"
+                    formaction="${pageContext.request.contextPath}/controller?">Отобразить значения показателя в диаграмме
+            </button>
         </form>
     </div>
-
-    <div id="oil" style="width: 450px; height: 250px; margin-top: 50px"></div>
-
-    <div style="margin-left: 700px">
-        <table>
-            <tr>
-                <th>№ Записи</th>
-                <th>Дата внесения данных</th>
-                <th>Отчетный период данных</th>
-                <th>Пользователь</th>
-                <th>Значение показателя безопасности</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>12.11.2022</td>
-                <td>2022</td>
-                <td>Иванов И.И.</td>
-                <td>59</td>
-            </tr>
-
-            <tr>
-                <td>2</td>
-                <td>1.11.2021</td>
-                <td>2021</td>
-                <td>Иванов И.И.</td>
-                <td>589</td>
-            </tr>
-        </table>
-    </div>
-
-
 </div>
+
+
+
+
 </body>
 </html>

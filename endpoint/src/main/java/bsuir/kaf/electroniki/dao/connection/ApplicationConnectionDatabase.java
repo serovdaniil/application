@@ -1,12 +1,12 @@
-package bsuir.kaf.electroniki.repository.connection;
+package bsuir.kaf.electroniki.dao.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
-import bsuir.kaf.electroniki.repository.AbstactEntityDao;
-import bsuir.kaf.electroniki.repository.DaoException;
+import bsuir.kaf.electroniki.dao.AbstactEntityDao;
+import bsuir.kaf.electroniki.dao.DaoException;
 
 /**
  * Connection to the database server.

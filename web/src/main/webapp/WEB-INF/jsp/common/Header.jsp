@@ -26,8 +26,8 @@
 <ul id="menu">
     <li><a href="${pageContext.request.contextPath}/controller?command=show_first_power_unit">Раздел 1</a></li>
     <li><a href="${pageContext.request.contextPath}/controller?command=show_second_power_unit">Раздел 2</a></li>
-    <li><a href="${pageContext.request.contextPath}/controller?command=">Раздел 3</a></li>
-    <li><a href="${pageContext.request.contextPath}/controller?command=">Раздел 4</a></li>
+    <li><a>Раздел 3</a></li>
+    <li><a>Раздел 4</a></li>
     <li></li>
     <li></li>
     <li></li>

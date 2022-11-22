@@ -5,7 +5,7 @@ import java.util.List;
 
 
 import bsuir.kaf.electroniki.model.Entity;
-import bsuir.kaf.electroniki.repository.EntityExtractionFailedException;
+import bsuir.kaf.electroniki.dao.EntityExtractionFailedException;
 
 /**
  * A common set of functions available for each entity individually.

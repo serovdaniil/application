@@ -16,6 +16,11 @@ public class ShowEditSafIndPage implements Command {
 
     @Override
     public CommandResponse execute(CommandRequest request) {
+        request.addAttributeToJsp("unitId", request.getParameter("unitId"));
+        request.addAttributeToJsp("safIndId", request.getParameter("safIndId"));
+        request.addAttributeToJsp("safIndName", request.getParameter("safIndName"));
+
+
         return requestFactory.createForwardResponse(PagePaths.EDIT_PAGE);
     }
 

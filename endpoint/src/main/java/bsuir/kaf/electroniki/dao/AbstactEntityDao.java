@@ -1,10 +1,11 @@
-package bsuir.kaf.electroniki.repository;
+package bsuir.kaf.electroniki.dao;
 
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLSyntaxErrorException;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -38,7 +39,12 @@ public abstract class AbstactEntityDao<T extends Entity> implements EntityDao<T>
         try (PreparedStatement statement = createEntityStatement(connection, entity)) {
             boolean result = statement.executeUpdate() == 1;
             String loggerMsgSuccessful = "DAO: Entity creation completed successfully.";
-            return checkOperationResult(connection, result, loggerMsgSuccessful, loggerMsgUnsuccessful);
+            return 1L;
+        }
+        catch (SQLSyntaxErrorException e) {
+            LOGGER.severe(e.getMessage());
+            LOGGER.info(loggerMsgUnsuccessful);
+            throw new DaoException(e);
         }
         catch (SQLException e) {
             LOGGER.severe("DAO: sql exception occurred");

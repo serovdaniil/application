@@ -2,8 +2,9 @@ package bsuir.kaf.electroniki.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.time.YearMonth;
+import java.time.Year;
 
 public class SafVal implements Entity, Serializable {
 
@@ -11,22 +12,22 @@ public class SafVal implements Entity, Serializable {
 
     private LocalDate date;
 
-    private YearMonth period;
+    private Year period;
 
     private BigDecimal value;
 
-    private int userId;
+    private User user;
 
-    private int unitId;
+    private Long unitId;
 
-    private int safIndId;
+    private Long safIndId;
 
-    public SafVal(Long id, LocalDate date, YearMonth period, BigDecimal value, int userId, int unitId, int safIndId) {
+    public SafVal(Long id, LocalDate date, Year period, BigDecimal value, User user, Long unitId, Long safIndId) {
         this.id = id;
         this.date = date;
         this.period = period;
         this.value = value;
-        this.userId = userId;
+        this.user = user;
         this.unitId = unitId;
         this.safIndId = safIndId;
     }
@@ -48,11 +49,11 @@ public class SafVal implements Entity, Serializable {
         this.date = date;
     }
 
-    public YearMonth getPeriod() {
+    public Year getPeriod() {
         return period;
     }
 
-    public void setPeriod(YearMonth period) {
+    public void setPeriod(Year period) {
         this.period = period;
     }
 
@@ -64,27 +65,27 @@ public class SafVal implements Entity, Serializable {
         this.value = value;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public int getUnitId() {
+    public Long getUnitId() {
         return unitId;
     }
 
-    public void setUnitId(int unitId) {
+    public void setUnitId(Long unitId) {
         this.unitId = unitId;
     }
 
-    public int getSafIndId() {
+    public Long getSafIndId() {
         return safIndId;
     }
 
-    public void setSafIndId(int safIndId) {
+    public void setSafIndId(Long safIndId) {
         this.safIndId = safIndId;
     }
 

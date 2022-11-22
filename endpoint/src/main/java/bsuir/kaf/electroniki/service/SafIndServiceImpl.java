@@ -5,31 +5,22 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import bsuir.kaf.electroniki.model.SafInd;
-import bsuir.kaf.electroniki.repository.connection.ApplicationConnectionDatabase;
-import bsuir.kaf.electroniki.repository.connection.ConnectionDatabase;
-import bsuir.kaf.electroniki.repository.EntityDao;
-import bsuir.kaf.electroniki.repository.EntityExtractionFailedException;
-import bsuir.kaf.electroniki.repository.SafIndDaoImpl;
+import bsuir.kaf.electroniki.dao.connection.ApplicationConnectionDatabase;
+import bsuir.kaf.electroniki.dao.connection.ConnectionDatabase;
+import bsuir.kaf.electroniki.dao.EntityDao;
+import bsuir.kaf.electroniki.dao.EntityExtractionFailedException;
+import bsuir.kaf.electroniki.dao.SafIndDaoImpl;
 
-public class SafIndServiceImpl  implements EntityService<SafInd>, Serializable {
+public class SafIndServiceImpl implements EntityService<SafInd>, Serializable {
 
-    /**
-     * A reference to an object on daoEmployee.
-     */
-    private final EntityDao<SafInd> employeeDao;
+    private final EntityDao<SafInd> dao;
 
-    /**
-     * The DataSource object.
-     */
     private final ConnectionDatabase connectionDatabase;
 
-    /**
-     * A logger object for logging events.
-     */
     private static final Logger LOGGER = Logger.getLogger(SafIndServiceImpl.class.getName());
 
-    public SafIndServiceImpl(EntityDao<SafInd> employeeDao, ConnectionDatabase connectionDatabase) {
-        this.employeeDao = employeeDao;
+    public SafIndServiceImpl(EntityDao<SafInd> dao, ConnectionDatabase connectionDatabase) {
+        this.dao = dao;
         this.connectionDatabase = connectionDatabase;
     }
 
@@ -40,7 +31,7 @@ public class SafIndServiceImpl  implements EntityService<SafInd>, Serializable {
 
     @Override
     public List<SafInd> findAll() throws ServiceException, EntityExtractionFailedException {
-        return employeeDao.findAll(connectionDatabase.getConnection());
+        return dao.findAll(connectionDatabase.getConnection());
     }
 
     /**

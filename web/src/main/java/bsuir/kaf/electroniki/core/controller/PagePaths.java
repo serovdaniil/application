@@ -15,6 +15,7 @@ public enum PagePaths {
     AUTHORIZED_PAGE("/WEB-INF/jsp/AuthorizedPage.jsp"),
     FIRST_POWER_UNIT_PAGE("/WEB-INF/jsp/FirstPowerUnit.jsp"),
     SECOND_POWER_UNIT_PAGE("/WEB-INF/jsp/SecondPowerUnit.jsp"),
+    TABLE_FOR_SAF_VAL("/WEB-INF/jsp/TableForSafVal.jsp"),
     EDIT_PAGE("/WEB-INF/jsp/EditCriteria.jsp");
 
     /**

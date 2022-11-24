@@ -14,8 +14,8 @@ public class ShowSafValCommand implements Command {
 
     private final RequestFactory requestFactory;
 
-    public ShowSafValCommand(SafValService employeeService) {
-        this.service = employeeService;
+    public ShowSafValCommand(SafValService service) {
+        this.service = service;
         this.requestFactory = RequestFactory.getInstance();
     }
 

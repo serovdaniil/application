@@ -21,9 +21,13 @@ public enum CommandRegistry {
 
     SECOND_POWER_UNIT_PAGE(ShowSecondPowerUnitPage.getInstance(), "show_second_power_unit"),
 
+    THIRD_SECTION(ShowThirdSectionCommand.getInstance(), "third_section"),
+
     ADD_SAF_VAL(CreateNewSafValCommand.getInstance(), "add_saf_val"),
 
     SHOW_TABLE_FOR_SAF_VAL(ShowSafValCommand.getInstance(), "show_table_for_saf_val"),
+
+    SHOW_DIAGRAM_FOR_SAF_VAL(ShowDiagramSafValCommand.getInstance(), "show_diagram_for_saf_val"),
 
     DEFAULT(ShowMainPage.getInstance(), "");
 

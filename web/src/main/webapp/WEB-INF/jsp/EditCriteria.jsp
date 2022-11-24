@@ -82,7 +82,7 @@ border: #4c51da solid 5px;"
                     formaction="${pageContext.request.contextPath}/controller?command=show_table_for_saf_val&idUnit=${requestScope.unitId}&idSafInd=${requestScope.safIndId}&safIndName=${requestScope.safIndName}">Отобразить значения показателя в таблице
             </button>
             <button type="submit" name="command" value="second"
-                    formaction="${pageContext.request.contextPath}/controller?">Отобразить значения показателя в диаграмме
+                    formaction="${pageContext.request.contextPath}/controller?command=show_diagram_for_saf_val&idUnit=${requestScope.unitId}&idSafInd=${requestScope.safIndId}&safIndName=${requestScope.safIndName}">Отобразить значения показателя в диаграмме
             </button>
         </form>
     </div>

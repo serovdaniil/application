@@ -38,7 +38,6 @@ public class SafValServiceImpl implements SafValService{
     @Override
     public List<SafVal> findAllValueForUnitAndIndicator(long idUnit, long idSavInd) {
         try {
-            System.out.println(dao.findAllValueForUnitAndIndicator(connectionDatabase.getConnection(), idUnit, idSavInd));
             return dao.findAllValueForUnitAndIndicator(connectionDatabase.getConnection(), idUnit, idSavInd);
         }
         catch (SQLException | DaoException e) {

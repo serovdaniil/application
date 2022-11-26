@@ -13,12 +13,21 @@ public enum PagePaths {
     INDEX("/"),
     MAIN("/WEB-INF/jsp/Main.jsp"),
     AUTHORIZED_PAGE("/WEB-INF/jsp/AuthorizedPage.jsp"),
+
     FIRST_POWER_UNIT_PAGE("/WEB-INF/jsp/FirstPowerUnit.jsp"),
     SECOND_POWER_UNIT_PAGE("/WEB-INF/jsp/SecondPowerUnit.jsp"),
-    THIRD_SECTION("/WEB-INF/jsp/ThirdSection.jsp"),
     TABLE_FOR_SAF_VAL("/WEB-INF/jsp/TableForSafVal.jsp"),
     DIAGRAM_FOR_SAF_VAL("/WEB-INF/jsp/DiagramForSafVal.jsp"),
-    EDIT_PAGE("/WEB-INF/jsp/EditCriteria.jsp");
+    EDIT_CRITERIA("/WEB-INF/jsp/EditCriteria.jsp"),
+
+    THIRD_SECTION("/WEB-INF/jsp/ThirdSection.jsp"),
+    THIRD_SECTION_FIRST_UNIT("/WEB-INF/jsp/ThirdSectionFirstUnit.jsp"),
+    THIRD_SECTION_SECOND_UNIT("/WEB-INF/jsp/ThirdSectionSecondUnit.jsp"),
+    THIRD_SECTION_FIRST_UNIT_IDENTIFICATION_AND_PROGNOSIS("/WEB-INF/jsp/ThirdSectionFirstUnitIdentificationAndPrognosis.jsp"),
+    THIRD_SECTION_SECOND_UNIT_IDENTIFICATION_AND_PROGNOSIS("/WEB-INF/jsp/ThirdSectionSecondUnitIdentificationAndPrognosis.jsp"),
+    TABLE_FOR_TREND("/WEB-INF/jsp/TableForTrend.jsp"),
+    DIAGRAM_FOR_TREND("/WEB-INF/jsp/DiagramForTrend.jsp"),
+    EDIT_TREND("/WEB-INF/jsp/EditTrend.jsp");
 
     /**
      * Variable for command link selection.

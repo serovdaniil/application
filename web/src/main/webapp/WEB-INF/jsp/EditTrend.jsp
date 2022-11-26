@@ -45,7 +45,7 @@ border: #4c51da solid 5px;"
 
     <%@include file="/WEB-INF/jsp/common/Header.jsp" %>
 
-    <h2 style="text-align: center">Показатели безопасной эксплуатации энергоблока №${requestScope.unitId}</h2>
+    <h2 style="text-align: center">Выявление и прогнозирование тенденций изменения состояния безопасной эксплуатации энергоблока №${requestScope.unitId}</h2>
 
     <h2 style="text-align: center">${requestScope.safIndName}</h2>
 
@@ -61,17 +61,12 @@ border: #4c51da solid 5px;"
                     <input class="container" type="text" name="iserId" value=""/>
                 </label>
             </div>
-            <div>
-                <label>Значение для отчетного периода:
-                    <input class="container" type="text" name="value" value=""/> ${requestScope.meas}
-                </label>
-            </div>
             <input type="hidden" name="safIndId" value="${requestScope.safIndId}">
             <input type="hidden" name="unitId" value="${requestScope.unitId}">
             <input type="hidden" name="safIndName" value="${requestScope.safIndName}">
 
             <div>
-                <button type="submit" class="button" name="command" value="add_saf_val"
+                <button type="submit" class="button" name="command" value="create_trend"
                         formaction="${pageContext.request.contextPath}/controller?">Сохранить
                 </button>
                 <button type="submit" class="button" name="command" value="second"
@@ -79,10 +74,10 @@ border: #4c51da solid 5px;"
                 </button>
             </div>
             <button type="submit" name="command" value="show_table_for_saf_val&idUnit=${requestScope.unitId}&idSafInd=${requestScope.safIndId}"
-                    formaction="${pageContext.request.contextPath}/controller?command=show_table_for_saf_val&idUnit=${requestScope.unitId}&idSafInd=${requestScope.safIndId}&safIndName=${requestScope.safIndName}&meas=${requestScope.meas}">Отобразить значения показателя в таблице
+                    formaction="${pageContext.request.contextPath}/controller?command=show_table_for_trend&idUnit=${requestScope.unitId}&idSafInd=${requestScope.safIndId}&safIndName=${requestScope.safIndName}&meas=${requestScope.meas}">Отобразить значения показателя в таблице
             </button>
             <button type="submit" name="command" value="second"
-                    formaction="${pageContext.request.contextPath}/controller?command=show_diagram_for_saf_val&idUnit=${requestScope.unitId}&idSafInd=${requestScope.safIndId}&safIndName=${requestScope.safIndName}&meas=${requestScope.meas}">Отобразить значения показателя в диаграмме
+                    formaction="${pageContext.request.contextPath}/controller?command=show_diagram_for_trend&idUnit=${requestScope.unitId}&idSafInd=${requestScope.safIndId}&safIndName=${requestScope.safIndName}&meas=${requestScope.meas}">Отобразить значения показателя в диаграмме
             </button>
         </form>
     </div>

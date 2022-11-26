@@ -1,4 +1,4 @@
-package bsuir.kaf.electroniki.core.command;
+package bsuir.kaf.electroniki.core.command.firstAndSecondSection;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -42,7 +42,7 @@ public class CreateNewSafValCommand implements Command {
         request.addAttributeToJsp("safIndId", request.getParameter("safIndId"));
         request.addAttributeToJsp("safIndName", request.getParameter("safIndName"));
 
-        return requestFactory.createForwardResponse(PagePaths.EDIT_PAGE);
+        return requestFactory.createForwardResponse(PagePaths.EDIT_CRITERIA);
 
     }
 

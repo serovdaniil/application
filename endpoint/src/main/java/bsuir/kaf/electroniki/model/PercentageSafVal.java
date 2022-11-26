@@ -61,4 +61,14 @@ public class PercentageSafVal {
     public int hashCode() {
         return Objects.hash(period, percentage, height);
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("PercentageSafVal{");
+        sb.append("period=").append(period);
+        sb.append(", percentage=").append(percentage);
+        sb.append(", height=").append(height);
+        sb.append('}');
+        return sb.toString();
+    }
 }

@@ -1,6 +1,21 @@
 package bsuir.kaf.electroniki.core.command;
 
 import bsuir.kaf.electroniki.api.command.Command;
+import bsuir.kaf.electroniki.core.command.firstAndSecondSection.CreateNewSafValCommand;
+import bsuir.kaf.electroniki.core.command.firstAndSecondSection.ShowDiagramSafValCommand;
+import bsuir.kaf.electroniki.core.command.firstAndSecondSection.ShowEditSafIndPage;
+import bsuir.kaf.electroniki.core.command.firstAndSecondSection.ShowTableSafValCommand;
+import bsuir.kaf.electroniki.core.command.firstAndSecondSection.firstSection.ShowFirstPowerUnitPage;
+import bsuir.kaf.electroniki.core.command.firstAndSecondSection.secondSection.ShowSecondPowerUnitPage;
+import bsuir.kaf.electroniki.core.command.thirdSection.CreateNewTrendCommand;
+import bsuir.kaf.electroniki.core.command.thirdSection.ShowDiagramTrendCommand;
+import bsuir.kaf.electroniki.core.command.thirdSection.ShowEditTrendPage;
+import bsuir.kaf.electroniki.core.command.thirdSection.ShowTableTrendCommand;
+import bsuir.kaf.electroniki.core.command.thirdSection.ShowThirdSectionCommand;
+import bsuir.kaf.electroniki.core.command.thirdSection.firstUnit.ShowThirdSectionFirstUnitIdentificationAndPrognosisPageCommand;
+import bsuir.kaf.electroniki.core.command.thirdSection.firstUnit.ShowThirdSectionFirstUnitCommand;
+import bsuir.kaf.electroniki.core.command.thirdSection.secondUnit.ShowThirdSectionSecondUnitCommand;
+import bsuir.kaf.electroniki.core.command.thirdSection.secondUnit.ShowThirdSectionSecondUnitIdentificationAndPrognosisPageCommand;
 
 /**
  * A set containing the name of the commands and the classes implementing them.
@@ -23,9 +38,25 @@ public enum CommandRegistry {
 
     THIRD_SECTION(ShowThirdSectionCommand.getInstance(), "third_section"),
 
+    THIRD_SECTION_FIRST_UNIT(ShowThirdSectionFirstUnitCommand.getInstance(), "third_section_first_unit"),
+
+    THIRD_SECTION_SECOND_UNIT(ShowThirdSectionSecondUnitCommand.getInstance(), "third_section_second_unit"),
+
+    THIRD_SECTION_FIRST_UNIT_IDENTIFICATION_AND_PROGNOSIS(ShowThirdSectionFirstUnitIdentificationAndPrognosisPageCommand.getInstance(), "third_section_first_unit_identification_and_prognosis"),
+
+    THIRD_SECTION_SECOND_UNIT_IDENTIFICATION_AND_PROGNOSIS(ShowThirdSectionSecondUnitIdentificationAndPrognosisPageCommand.getInstance(), "third_section_second_unit_identification_and_prognosis"),
+
+    EDIT_TREND(ShowEditTrendPage.getInstance(), "edit_trend"),
+
+    CREATE_TREND(CreateNewTrendCommand.getInstance(), "create_trend"),
+
+    SHOW_TABLE_FOR_TREND(ShowTableTrendCommand.getInstance(), "show_table_for_trend"),
+
+    SHOW_DIAGRAM_FOR_TREND(ShowDiagramTrendCommand.getInstance(), "show_diagram_for_trend"),
+
     ADD_SAF_VAL(CreateNewSafValCommand.getInstance(), "add_saf_val"),
 
-    SHOW_TABLE_FOR_SAF_VAL(ShowSafValCommand.getInstance(), "show_table_for_saf_val"),
+    SHOW_TABLE_FOR_SAF_VAL(ShowTableSafValCommand.getInstance(), "show_table_for_saf_val"),
 
     SHOW_DIAGRAM_FOR_SAF_VAL(ShowDiagramSafValCommand.getInstance(), "show_diagram_for_saf_val"),
 

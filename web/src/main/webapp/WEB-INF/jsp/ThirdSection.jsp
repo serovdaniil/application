@@ -16,10 +16,14 @@ border: #4c51da solid 5px;"
 
     <ul>
         <li style="margin-bottom: 25px">
-            <a>Энергоблок №1</a>
+            <a href="${pageContext.request.contextPath}/controller?command=third_section_first_unit">
+                Энергоблок №1
+            </a>
         </li>
         <li style="margin-bottom: 25px">
-            <a>Энергоблок №2</a>
+            <a  href="${pageContext.request.contextPath}/controller?command=third_section_second_unit">
+                Энергоблок №2
+            </a>
         </li>
         <li style="margin-bottom: 25px">
             <a>Сравнение показателей безопасной эксплуатации однотипных энергоблоков №1 и №2</a>

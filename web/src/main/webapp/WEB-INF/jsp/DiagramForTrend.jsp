@@ -51,7 +51,7 @@ height: auto;
 border: #4c51da solid 5px;"
 >
     <%@include file="/WEB-INF/jsp/common/Header.jsp" %>
-    <h2 style="text-align: center">Показатели безопасной эксплуатации энергоблока №${requestScope.unitId}</h2>
+    <h2 style="text-align: center">Выявление и прогнозирование тенденций изменения состояния безопасной эксплуатации энергоблока №${requestScope.unitId}</h2>
 
     <h2 style="text-align: center">${requestScope.safIndName}</h2>
 
@@ -60,7 +60,7 @@ border: #4c51da solid 5px;"
             <div class="item" style="height:${percentage.percentage}px;margin-top:${percentage.height}px; text-align: center">${percentage.period}</div>
         </c:forEach>
     </div>
-    <div style="text-align: center"> По оси абсцисс отложен "Год". По оси ординат отложено значения для конкретного года.</div>
+   <div style="text-align: center"> По оси абсцисс отложен "Год". По оси ординат отложено значения для конкретного года.</div>
 </div>
 </body>
 </html>

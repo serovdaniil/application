@@ -1,4 +1,4 @@
-package bsuir.kaf.electroniki.core.command;
+package bsuir.kaf.electroniki.core.command.thirdSection.secondUnit;
 
 import bsuir.kaf.electroniki.api.command.Command;
 import bsuir.kaf.electroniki.api.command.CommandRequest;
@@ -6,22 +6,18 @@ import bsuir.kaf.electroniki.api.command.CommandResponse;
 import bsuir.kaf.electroniki.api.controller.RequestFactory;
 import bsuir.kaf.electroniki.core.controller.PagePaths;
 
-public class ShowEditSafIndPage implements Command {
+public class ShowThirdSectionSecondUnitCommand implements Command {
 
     private final RequestFactory requestFactory;
 
-    public ShowEditSafIndPage() {
+    public ShowThirdSectionSecondUnitCommand() {
         this.requestFactory = RequestFactory.getInstance();
     }
 
     @Override
     public CommandResponse execute(CommandRequest request) {
-        request.addAttributeToJsp("unitId", request.getParameter("unitId"));
-        request.addAttributeToJsp("safIndId", request.getParameter("safIndId"));
-        request.addAttributeToJsp("safIndName", request.getParameter("safIndName"));
 
-
-        return requestFactory.createForwardResponse(PagePaths.EDIT_PAGE);
+        return requestFactory.createForwardResponse(PagePaths.THIRD_SECTION_SECOND_UNIT);
     }
 
     /**
@@ -29,13 +25,13 @@ public class ShowEditSafIndPage implements Command {
      *
      * @return the instance
      */
-    public static ShowEditSafIndPage getInstance() {
-        return Holder.INSTANCE;
+    public static ShowThirdSectionSecondUnitCommand getInstance() {
+        return ShowThirdSectionSecondUnitCommand.Holder.INSTANCE;
     }
 
     private static class Holder {
 
-        public static final ShowEditSafIndPage INSTANCE =
-            new ShowEditSafIndPage();
+        public static final ShowThirdSectionSecondUnitCommand INSTANCE =
+            new ShowThirdSectionSecondUnitCommand();
     }
 }

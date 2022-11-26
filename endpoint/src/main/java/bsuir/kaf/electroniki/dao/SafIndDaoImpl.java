@@ -20,7 +20,7 @@ public class SafIndDaoImpl extends AbstactEntityDao<SafInd> implements ResultSet
 
     @Override
     protected List<SafInd> findAllStatement(Connection connection) throws SQLException, EntityExtractionFailedException {
-        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM db2.saf_ind;");
+        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM saf_ind;");
              ResultSet resultSet = statement.executeQuery()) {
             return extractAll(resultSet);
         }

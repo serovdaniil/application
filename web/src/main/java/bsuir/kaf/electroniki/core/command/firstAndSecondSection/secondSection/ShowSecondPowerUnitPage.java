@@ -1,4 +1,4 @@
-package bsuir.kaf.electroniki.core.command;
+package bsuir.kaf.electroniki.core.command.firstAndSecondSection.secondSection;
 
 import bsuir.kaf.electroniki.api.command.Command;
 import bsuir.kaf.electroniki.api.command.CommandRequest;

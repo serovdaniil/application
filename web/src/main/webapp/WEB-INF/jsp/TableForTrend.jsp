@@ -10,7 +10,7 @@
 
 <%@include file="/WEB-INF/jsp/common/Header.jsp" %>
 
-<h2 style="text-align: center">Показатели безопасной эксплуатации энергоблока №${requestScope.unitId}</h2>
+<h2 style="text-align: center">Выявление и прогнозирование тенденций изменения состояния безопасной эксплуатации энергоблока №${requestScope.unitId}</h2>
 
 <h2 style="text-align: center">${requestScope.safIndName}</h2>
 <div style="width: 99%; height: 100%; border: #4c51da solid 5px;">
@@ -21,9 +21,9 @@
                 <th>Дата внесения данных</th>
                 <th>Отчетный период данных</th>
                 <th>Пользователь</th>
-                <th>Значение показателя безопасности(${requestScope.meas})</th>
+                <th>Среднее значение показателя безопасности(${requestScope.meas})</th>
             </tr>
-            <c:forEach var="safVal" items="${requestScope.safVals}" varStatus="it">
+            <c:forEach var="safVal" items="${requestScope.trends}" varStatus="it">
                 <tr>
                     <td>${it.index+1}</td>
                     <td>${safVal.date}</td>

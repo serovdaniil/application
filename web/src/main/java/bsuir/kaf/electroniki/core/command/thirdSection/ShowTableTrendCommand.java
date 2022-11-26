@@ -1,20 +1,20 @@
-package bsuir.kaf.electroniki.core.command;
+package bsuir.kaf.electroniki.core.command.thirdSection;
 
 import bsuir.kaf.electroniki.api.command.Command;
 import bsuir.kaf.electroniki.api.command.CommandRequest;
 import bsuir.kaf.electroniki.api.command.CommandResponse;
 import bsuir.kaf.electroniki.api.controller.RequestFactory;
 import bsuir.kaf.electroniki.core.controller.PagePaths;
-import bsuir.kaf.electroniki.service.SafValService;
-import bsuir.kaf.electroniki.service.SafValServiceImpl;
+import bsuir.kaf.electroniki.service.TrendService;
+import bsuir.kaf.electroniki.service.TrendServiceImpl;
 
-public class ShowSafValCommand implements Command {
+public class ShowTableTrendCommand implements Command {
 
-    private final SafValService service;
+    private final TrendService service;
 
     private final RequestFactory requestFactory;
 
-    public ShowSafValCommand(SafValService service) {
+    public ShowTableTrendCommand(TrendService service) {
         this.service = service;
         this.requestFactory = RequestFactory.getInstance();
     }
@@ -23,14 +23,15 @@ public class ShowSafValCommand implements Command {
     public CommandResponse execute(CommandRequest request) {
 
         request.addAttributeToJsp(
-            "safVals", service.findAllValueForUnitAndIndicator(
+            "trends", service.findAllValueForUnitAndIndicator(
                 Long.parseLong(request.getParameter("idUnit")), Long.parseLong(request.getParameter("idSafInd"))
             )
         );
         request.addAttributeToJsp("safIndName", request.getParameter("safIndName"));
         request.addAttributeToJsp("unitId", request.getParameter("unitId"));
+        request.addAttributeToJsp("meas", request.getParameter("meas"));
 
-        return requestFactory.createForwardResponse(PagePaths.TABLE_FOR_SAF_VAL);
+        return requestFactory.createForwardResponse(PagePaths.TABLE_FOR_TREND);
 
     }
 
@@ -39,13 +40,13 @@ public class ShowSafValCommand implements Command {
      *
      * @return the instance
      */
-    public static ShowSafValCommand getInstance() {
-        return ShowSafValCommand.Holder.INSTANCE;
+    public static ShowTableTrendCommand getInstance() {
+        return Holder.INSTANCE;
     }
 
     private static class Holder {
 
-        public static final ShowSafValCommand INSTANCE =
-            new ShowSafValCommand(SafValServiceImpl.getInstance());
+        public static final ShowTableTrendCommand INSTANCE =
+            new ShowTableTrendCommand(TrendServiceImpl.getInstance());
     }
 }

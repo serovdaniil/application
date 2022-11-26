@@ -1,4 +1,4 @@
-package bsuir.kaf.electroniki.core.command;
+package bsuir.kaf.electroniki.core.command.thirdSection;
 
 import bsuir.kaf.electroniki.api.command.Command;
 import bsuir.kaf.electroniki.api.command.CommandRequest;
@@ -22,8 +22,6 @@ public class ShowThirdSectionCommand implements Command {
                 1, 1)
         );
 
-        System.out.println(SafValServiceImpl.getInstance().findAllValueForUnitAndIndicator(
-            1, 1).size());
         return requestFactory.createForwardResponse(PagePaths.THIRD_SECTION);
     }
 

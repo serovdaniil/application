@@ -1,4 +1,4 @@
-package bsuir.kaf.electroniki.core.command;
+package bsuir.kaf.electroniki.core.command.firstAndSecondSection;
 
 import java.util.Comparator;
 import java.util.List;
@@ -47,17 +47,23 @@ public class ShowDiagramSafValCommand implements Command {
                 double normalizeValue = it.getValue().doubleValue() / finalMaxValue * 100;
 
                 percentageSafVal.setPeriod(it.getPeriod());
-                percentageSafVal.setPercentage(normalizeValue);
-                percentageSafVal.setHeight(300 - normalizeValue);
+                percentageSafVal.setPercentage(normalizeValue * 2.5);
+                percentageSafVal.setHeight(300 - (normalizeValue * 2.5));
 
                 return percentageSafVal;
             })
             .sorted(Comparator.comparing(PercentageSafVal::getPeriod))
             .collect(Collectors.toList());
 
+        double wight = 500 / values.size() > 20
+            ? 500 / values.size() < 80 ? 500 / values.size() : 80
+            : 20;
+
         request.addAttributeToJsp("values", values);
+        request.addAttributeToJsp("wight", wight);
         request.addAttributeToJsp("safIndName", request.getParameter("safIndName"));
         request.addAttributeToJsp("unitId", request.getParameter("unitId"));
+        request.addAttributeToJsp("meas", request.getParameter("meas"));
 
         return requestFactory.createForwardResponse(PagePaths.DIAGRAM_FOR_SAF_VAL);
 

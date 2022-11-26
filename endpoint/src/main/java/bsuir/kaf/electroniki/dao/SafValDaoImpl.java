@@ -43,12 +43,36 @@ public class SafValDaoImpl extends AbstactEntityDao<SafVal> implements SafValDao
 
     @Override
     public List<SafVal> findAllValueForUnitAndIndicator(Connection connection, long idUnit, long idSavInd) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement("SELECT * FROM db2.saf_val " +
-            "JOIN db2.users ON saf_val.id_user = users.id_user " +
-            "JOIN db2.users_name ON users.id_name = users_name.id_name " +
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM saf_val " +
+            "JOIN users ON saf_val.id_user = users.id_user " +
+            "JOIN users_name ON users.id_name = users_name.id_name " +
             "WHERE id_unit = ? AND id_saf_ind = ?");
         statement.setLong(1, idUnit);
         statement.setLong(2, idSavInd);
+        try (ResultSet resultSet = statement.executeQuery()) {
+            if (resultSet.next()) {
+                return this.extractAll(resultSet);
+            }
+            return new ArrayList<>();
+        }
+        catch (SQLException e) {
+            LOGGER.severe("Error when working with the PreparedStatement.");
+            throw e;
+        }
+        finally {
+            statement.close();
+        }
+    }
+
+    @Override
+    public List<SafVal> findAllValueForUnitAndIndicatorAndPeriod(Connection connection, Year period, long idUnit, long idSavInd) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM saf_val " +
+            "JOIN users ON saf_val.id_user = users.id_user " +
+            "JOIN users_name ON users.id_name = users_name.id_name " +
+            "WHERE id_unit = ? AND id_saf_ind = ? AND prd_saf_val <= ?");
+        statement.setLong(1, idUnit);
+        statement.setLong(2, idSavInd);
+        statement.setInt(3, period.getValue());
         try (ResultSet resultSet = statement.executeQuery()) {
             if (resultSet.next()) {
                 return this.extractAll(resultSet);

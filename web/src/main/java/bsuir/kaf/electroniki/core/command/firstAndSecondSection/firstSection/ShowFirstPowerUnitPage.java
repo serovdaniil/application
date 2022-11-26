@@ -1,4 +1,4 @@
-package bsuir.kaf.electroniki.core.command;
+package bsuir.kaf.electroniki.core.command.firstAndSecondSection.firstSection;
 
 import bsuir.kaf.electroniki.api.command.Command;
 import bsuir.kaf.electroniki.api.command.CommandRequest;
@@ -23,6 +23,7 @@ public class ShowFirstPowerUnitPage implements Command {
     @Override
     public CommandResponse execute(CommandRequest request) {
         request.addAttributeToJsp("safInds", service.findAll());
+
         return requestFactory.createForwardResponse(PagePaths.FIRST_POWER_UNIT_PAGE);
     }
 

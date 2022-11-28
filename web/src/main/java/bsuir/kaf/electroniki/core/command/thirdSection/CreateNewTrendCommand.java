@@ -1,6 +1,5 @@
 package bsuir.kaf.electroniki.core.command.thirdSection;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Year;
 
@@ -9,22 +8,24 @@ import bsuir.kaf.electroniki.api.command.CommandRequest;
 import bsuir.kaf.electroniki.api.command.CommandResponse;
 import bsuir.kaf.electroniki.api.controller.RequestFactory;
 import bsuir.kaf.electroniki.core.controller.PagePaths;
-import bsuir.kaf.electroniki.model.SafVal;
 import bsuir.kaf.electroniki.model.Trend;
 import bsuir.kaf.electroniki.model.User;
-import bsuir.kaf.electroniki.service.SafValService;
-import bsuir.kaf.electroniki.service.SafValServiceImpl;
+import bsuir.kaf.electroniki.service.EntityService;
 import bsuir.kaf.electroniki.service.TrendService;
 import bsuir.kaf.electroniki.service.TrendServiceImpl;
+import bsuir.kaf.electroniki.service.UserServiceImpl;
 
 public class CreateNewTrendCommand implements Command {
 
     private final TrendService service;
 
+    private final EntityService<User> userService;
+
     private final RequestFactory requestFactory;
 
-    public CreateNewTrendCommand(TrendService employeeService) {
+    public CreateNewTrendCommand(TrendService employeeService, EntityService<User> userService) {
         this.service = employeeService;
+        this.userService = userService;
         this.requestFactory = RequestFactory.getInstance();
     }
 
@@ -43,6 +44,7 @@ public class CreateNewTrendCommand implements Command {
         request.addAttributeToJsp("unitId", request.getParameter("unitId"));
         request.addAttributeToJsp("safIndId", request.getParameter("safIndId"));
         request.addAttributeToJsp("safIndName", request.getParameter("safIndName"));
+        request.addAttributeToJsp("users", userService.findAll());
 
         return requestFactory.createForwardResponse(PagePaths.EDIT_TREND);
 
@@ -60,6 +62,6 @@ public class CreateNewTrendCommand implements Command {
     private static class Holder {
 
         public static final CreateNewTrendCommand INSTANCE =
-            new CreateNewTrendCommand(TrendServiceImpl.getInstance());
+            new CreateNewTrendCommand(TrendServiceImpl.getInstance(), UserServiceImpl.getInstance());
     }
 }

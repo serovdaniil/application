@@ -7,9 +7,14 @@ import bsuir.kaf.electroniki.core.command.firstAndSecondSection.ShowEditSafIndPa
 import bsuir.kaf.electroniki.core.command.firstAndSecondSection.ShowTableSafValCommand;
 import bsuir.kaf.electroniki.core.command.firstAndSecondSection.firstSection.ShowFirstPowerUnitPage;
 import bsuir.kaf.electroniki.core.command.firstAndSecondSection.secondSection.ShowSecondPowerUnitPage;
+import bsuir.kaf.electroniki.core.command.thirdSection.CreateCurStatusCommand;
 import bsuir.kaf.electroniki.core.command.thirdSection.CreateNewTrendCommand;
+import bsuir.kaf.electroniki.core.command.thirdSection.ShowDiagramCurStatusCommand;
 import bsuir.kaf.electroniki.core.command.thirdSection.ShowDiagramTrendCommand;
+import bsuir.kaf.electroniki.core.command.thirdSection.ShowEditSysEquipPageCommand;
 import bsuir.kaf.electroniki.core.command.thirdSection.ShowEditTrendPage;
+import bsuir.kaf.electroniki.core.command.thirdSection.ShowSysEquipPageCommand;
+import bsuir.kaf.electroniki.core.command.thirdSection.ShowTableForCurStatusCommand;
 import bsuir.kaf.electroniki.core.command.thirdSection.ShowTableTrendCommand;
 import bsuir.kaf.electroniki.core.command.thirdSection.ShowThirdSectionCommand;
 import bsuir.kaf.electroniki.core.command.thirdSection.firstUnit.ShowThirdSectionFirstUnitIdentificationAndPrognosisPageCommand;
@@ -53,6 +58,16 @@ public enum CommandRegistry {
     SHOW_TABLE_FOR_TREND(ShowTableTrendCommand.getInstance(), "show_table_for_trend"),
 
     SHOW_DIAGRAM_FOR_TREND(ShowDiagramTrendCommand.getInstance(), "show_diagram_for_trend"),
+
+    SHOW_SYS_EQUIP_PAGE(ShowSysEquipPageCommand.getInstance(), "show_sys_equip"),
+
+    SHOW_TABLE_FOR_CUR_STATUS_PAGE(ShowTableForCurStatusCommand.getInstance(), "show_table_for_cur_status"),
+
+    SHOW_DIAGRAM_FOR_CUR_STATUS(ShowDiagramCurStatusCommand.getInstance(), "show_diagram_for_cur_status"),
+
+    EDIT_SYS_EQUIP_PAGE(ShowEditSysEquipPageCommand.getInstance(), "edit_sys_equip"),
+
+    ADD_SYS_EQUIP_PAGE(CreateCurStatusCommand.getInstance(), "add_sys_equip"),
 
     ADD_SAF_VAL(CreateNewSafValCommand.getInstance(), "add_saf_val"),
 

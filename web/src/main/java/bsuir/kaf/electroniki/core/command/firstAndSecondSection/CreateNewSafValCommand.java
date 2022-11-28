@@ -11,17 +11,22 @@ import bsuir.kaf.electroniki.api.controller.RequestFactory;
 import bsuir.kaf.electroniki.core.controller.PagePaths;
 import bsuir.kaf.electroniki.model.SafVal;
 import bsuir.kaf.electroniki.model.User;
+import bsuir.kaf.electroniki.service.EntityService;
 import bsuir.kaf.electroniki.service.SafValService;
 import bsuir.kaf.electroniki.service.SafValServiceImpl;
+import bsuir.kaf.electroniki.service.UserServiceImpl;
 
 public class CreateNewSafValCommand implements Command {
 
     private final SafValService service;
 
+    private final EntityService<User> userService;
+
     private final RequestFactory requestFactory;
 
-    public CreateNewSafValCommand(SafValService employeeService) {
+    public CreateNewSafValCommand(SafValService employeeService, EntityService<User> userService) {
         this.service = employeeService;
+        this.userService = userService;
         this.requestFactory = RequestFactory.getInstance();
     }
 
@@ -41,6 +46,7 @@ public class CreateNewSafValCommand implements Command {
         request.addAttributeToJsp("unitId", request.getParameter("unitId"));
         request.addAttributeToJsp("safIndId", request.getParameter("safIndId"));
         request.addAttributeToJsp("safIndName", request.getParameter("safIndName"));
+        request.addAttributeToJsp("users", userService.findAll());
 
         return requestFactory.createForwardResponse(PagePaths.EDIT_CRITERIA);
 
@@ -58,6 +64,6 @@ public class CreateNewSafValCommand implements Command {
     private static class Holder {
 
         public static final CreateNewSafValCommand INSTANCE =
-            new CreateNewSafValCommand(SafValServiceImpl.getInstance());
+            new CreateNewSafValCommand(SafValServiceImpl.getInstance(), UserServiceImpl.getInstance());
     }
 }

@@ -27,6 +27,11 @@ public enum PagePaths {
     THIRD_SECTION_SECOND_UNIT_IDENTIFICATION_AND_PROGNOSIS("/WEB-INF/jsp/ThirdSectionSecondUnitIdentificationAndPrognosis.jsp"),
     TABLE_FOR_TREND("/WEB-INF/jsp/TableForTrend.jsp"),
     DIAGRAM_FOR_TREND("/WEB-INF/jsp/DiagramForTrend.jsp"),
+    SYS_EQUIP("/WEB-INF/jsp/SysEquip.jsp"),
+    EDIT_SYS_EQUIP("/WEB-INF/jsp/EditSysEquip.jsp"),
+    TABLE_FOR_CUR_STATUS("/WEB-INF/jsp/TableForCurSystem.jsp"),
+    DIAGRAM_FOR_CUR_STATUS("/WEB-INF/jsp/DiagramForCurStatus.jsp"),
+
     EDIT_TREND("/WEB-INF/jsp/EditTrend.jsp");
 
     /**

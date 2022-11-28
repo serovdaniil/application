@@ -26,7 +26,7 @@ border: #4c51da solid 5px;"
             </a>
         </li>
         <li style="margin-bottom: 25px">
-            <a>
+            <a href="${pageContext.request.contextPath}/controller?command=show_sys_equip&idUnit=1">
                 Выявление, систем (элементов), требующих особого внимания для обеспечения безопасной эксплуатации энергоблока №1
             </a>
         </li>

@@ -58,7 +58,11 @@ border: #4c51da solid 5px;"
             </div>
             <div>
                 <label>Пользователь:
-                    <input class="container" type="text" name="iserId" value=""/>
+                    <select id="roleNew-input" name="iserId">
+                        <c:forEach var="user" items="${requestScope.users}">
+                            <option value="${user.id}">${user.surname} ${user.name} ${user.patronymic}</option>
+                        </c:forEach>
+                    </select>
                 </label>
             </div>
             <div>

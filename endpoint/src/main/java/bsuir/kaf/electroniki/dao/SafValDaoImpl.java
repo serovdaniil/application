@@ -1,7 +1,6 @@
 package bsuir.kaf.electroniki.dao;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -49,11 +48,9 @@ public class SafValDaoImpl extends AbstactEntityDao<SafVal> implements SafValDao
             "WHERE id_unit = ? AND id_saf_ind = ?");
         statement.setLong(1, idUnit);
         statement.setLong(2, idSavInd);
+
         try (ResultSet resultSet = statement.executeQuery()) {
-            if (resultSet.next()) {
-                return this.extractAll(resultSet);
-            }
-            return new ArrayList<>();
+            return this.extractAll(resultSet);
         }
         catch (SQLException e) {
             LOGGER.severe("Error when working with the PreparedStatement.");
@@ -74,10 +71,7 @@ public class SafValDaoImpl extends AbstactEntityDao<SafVal> implements SafValDao
         statement.setLong(2, idSavInd);
         statement.setInt(3, period.getValue());
         try (ResultSet resultSet = statement.executeQuery()) {
-            if (resultSet.next()) {
-                return this.extractAll(resultSet);
-            }
-            return new ArrayList<>();
+            return this.extractAll(resultSet);
         }
         catch (SQLException e) {
             LOGGER.severe("Error when working with the PreparedStatement.");
@@ -94,7 +88,7 @@ public class SafValDaoImpl extends AbstactEntityDao<SafVal> implements SafValDao
                 resultSet.getLong("id_saf_val"),
                 LocalDate.parse(resultSet.getString("date_saf_val"), DateTimeFormatter.ISO_LOCAL_DATE),
                 Year.parse(resultSet.getString("prd_saf_val").substring(0, 4)),
-                new BigDecimal(resultSet.getLong("val_cur")),
+                resultSet.getBigDecimal("val_cur"),
                 new User(resultSet.getLong("id_user"),
                     resultSet.getString("surname"),
                     resultSet.getString("name"),
@@ -110,6 +104,7 @@ public class SafValDaoImpl extends AbstactEntityDao<SafVal> implements SafValDao
     @Override
     public List<SafVal> extractAll(ResultSet resultSet) throws SQLException, EntityExtractionFailedException {
         List<SafVal> entities = new ArrayList<>();
+
         while (resultSet.next()) {
             entities.add(extract(resultSet));
         }

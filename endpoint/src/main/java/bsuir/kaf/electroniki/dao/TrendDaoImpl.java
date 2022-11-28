@@ -1,7 +1,6 @@
 package bsuir.kaf.electroniki.dao;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -44,17 +43,14 @@ public class TrendDaoImpl extends AbstactEntityDao<Trend> implements TrendDao, R
 
     @Override
     public List<Trend> findAllTrendForUnitAndIndicator(Connection connection, long idUnit, long idSavInd) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement("SELECT * FROM trends " +
-            "JOIN users ON trends.id_user = users.id_user " +
+        PreparedStatement statement = connection.prepareStatement("SELECT * FROM trends JOIN users ON trends.id_user = users.id_user " +
             "JOIN users_name ON users.id_name = users_name.id_name " +
-            "WHERE id_unit = ? AND id_saf_ind = ?");
+            "WHERE id_unit = ? AND id_saf_ind = ?;");
+
         statement.setLong(1, idUnit);
         statement.setLong(2, idSavInd);
         try (ResultSet resultSet = statement.executeQuery()) {
-            if (resultSet.next()) {
-                return this.extractAll(resultSet);
-            }
-            return new ArrayList<>();
+            return this.extractAll(resultSet);
         }
         catch (SQLException e) {
             LOGGER.severe("Error when working with the PreparedStatement.");
@@ -78,7 +74,7 @@ public class TrendDaoImpl extends AbstactEntityDao<Trend> implements TrendDao, R
                 resultSet.getLong("id_trend"),
                 LocalDate.parse(resultSet.getString("date_trend"), DateTimeFormatter.ISO_LOCAL_DATE),
                 Year.parse(resultSet.getString("prd_trend").substring(0, 4)),
-                new BigDecimal(resultSet.getLong("val_mid")),
+                resultSet.getBigDecimal("val_mid"),
                 new User(resultSet.getLong("id_user"),
                     resultSet.getString("surname"),
                     resultSet.getString("name"),

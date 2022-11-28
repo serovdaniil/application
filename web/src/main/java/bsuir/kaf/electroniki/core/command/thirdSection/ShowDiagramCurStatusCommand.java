@@ -1,5 +1,6 @@
 package bsuir.kaf.electroniki.core.command.thirdSection;
 
+import java.time.Year;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,33 +10,36 @@ import bsuir.kaf.electroniki.api.command.CommandRequest;
 import bsuir.kaf.electroniki.api.command.CommandResponse;
 import bsuir.kaf.electroniki.api.controller.RequestFactory;
 import bsuir.kaf.electroniki.core.controller.PagePaths;
+import bsuir.kaf.electroniki.model.CurStatus;
 import bsuir.kaf.electroniki.model.PercentageSafVal;
 import bsuir.kaf.electroniki.model.Trend;
+import bsuir.kaf.electroniki.service.CurSysService;
+import bsuir.kaf.electroniki.service.CurSysServiceImpl;
 import bsuir.kaf.electroniki.service.TrendService;
 import bsuir.kaf.electroniki.service.TrendServiceImpl;
 
-public class ShowDiagramTrendCommand implements Command {
+public class ShowDiagramCurStatusCommand implements Command {
 
-    private final TrendService service;
+    private final CurSysService service;
 
     private final RequestFactory requestFactory;
 
-    public ShowDiagramTrendCommand(TrendService service) {
+    public ShowDiagramCurStatusCommand(CurSysService service) {
         this.service = service;
         this.requestFactory = RequestFactory.getInstance();
     }
 
     @Override
     public CommandResponse execute(CommandRequest request) {
-        List<Trend> valList = service.findAllValueForUnitAndIndicator(
-            Long.parseLong(request.getParameter("idUnit")), Long.parseLong(request.getParameter("idSafInd")));
-
+        List<CurStatus> valList = service.findCurStatusBySystem(
+            Long.parseLong(request.getParameter("idSystem"))
+        );
         double maxValue = 0;
 
-        for (Trend item : valList) {
-            if (item.getValue().doubleValue() > maxValue) {
+        for (CurStatus item : valList) {
+            if (item.getDistant().doubleValue() > maxValue) {
 
-                maxValue = item.getValue().doubleValue();
+                maxValue = item.getDistant().doubleValue();
             }
         }
 
@@ -44,9 +48,9 @@ public class ShowDiagramTrendCommand implements Command {
             .map(it -> {
                 PercentageSafVal percentageSafVal = new PercentageSafVal();
 
-                double normalizeValue = it.getValue().doubleValue() / finalMaxValue * 100;
+                double normalizeValue = it.getDistant().doubleValue() / finalMaxValue * 100;
 
-                percentageSafVal.setPeriod(it.getPeriod());
+                percentageSafVal.setPeriod(Year.parse(it.getDate().toString().substring(0, 4)));
                 percentageSafVal.setPercentage(normalizeValue * 2.5);
                 percentageSafVal.setHeight(300 - (normalizeValue * 2.5));
 
@@ -68,7 +72,7 @@ public class ShowDiagramTrendCommand implements Command {
         request.addAttributeToJsp("unitId", request.getParameter("unitId"));
         request.addAttributeToJsp("meas", request.getParameter("meas"));
 
-        return requestFactory.createForwardResponse(PagePaths.DIAGRAM_FOR_TREND);
+        return requestFactory.createForwardResponse(PagePaths.DIAGRAM_FOR_CUR_STATUS);
 
     }
 
@@ -77,13 +81,13 @@ public class ShowDiagramTrendCommand implements Command {
      *
      * @return the instance
      */
-    public static ShowDiagramTrendCommand getInstance() {
-        return ShowDiagramTrendCommand.Holder.INSTANCE;
+    public static ShowDiagramCurStatusCommand getInstance() {
+        return ShowDiagramCurStatusCommand.Holder.INSTANCE;
     }
 
     private static class Holder {
 
-        public static final ShowDiagramTrendCommand INSTANCE =
-            new ShowDiagramTrendCommand(TrendServiceImpl.getInstance());
+        public static final ShowDiagramCurStatusCommand INSTANCE =
+            new ShowDiagramCurStatusCommand(CurSysServiceImpl.getInstance());
     }
 }

@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import bsuir.kaf.electroniki.model.Crits;
 import bsuir.kaf.electroniki.model.CurStatus;
 import bsuir.kaf.electroniki.model.Mark;
-import bsuir.kaf.electroniki.model.SysEquip;
 import bsuir.kaf.electroniki.model.User;
 
 public class CurStatusDaoImpl extends AbstactEntityDao<CurStatus> implements CurStatusDao, ResultSetExtractor<CurStatus>, Serializable {
@@ -77,7 +77,8 @@ public class CurStatusDaoImpl extends AbstactEntityDao<CurStatus> implements Cur
         PreparedStatement statement = connection.prepareStatement("SELECT * FROM cur_status " +
             "JOIN users ON cur_status.id_user = users.id_user " +
             "JOIN users_name ON users.id_name = users_name.id_name " +
-            "JOIN marks ON cur_status.id_mark = marks.id_mark WHERE id_sys = ?");
+            "JOIN marks ON cur_status.id_mark = marks.id_mark " +
+            "JOIN crits ON marks.id_crit = crits.id_crit WHERE id_sys = ?");
         statement.setLong(1, idSystem);
         try (ResultSet resultSet = statement.executeQuery()) {
             return this.extractAll(resultSet);
@@ -118,6 +119,24 @@ public class CurStatusDaoImpl extends AbstactEntityDao<CurStatus> implements Cur
         return statement;
     }
 
+    @Override
+    public void callReportCurSystem(Connection connection, long idUnit) throws SQLException {
+        PreparedStatement statement = connection.prepareStatement(String.format(
+            "call report_cur_status('-', '%s', 'все', 'все', 'все', 'все', 'все', '-', '-', '-', 'distan');", idUnit)
+        );
+
+        try {
+            statement.executeQuery();
+        }
+        catch (SQLException e) {
+            LOGGER.severe("Error when working with the PreparedStatement.");
+            throw e;
+        }
+        finally {
+            statement.close();
+        }
+    }
+
     /**
      * A method for processing data from a database that creates an entity and removes spaces in string variables.
      *
@@ -136,7 +155,10 @@ public class CurStatusDaoImpl extends AbstactEntityDao<CurStatus> implements Cur
                     resultSet.getString("patronymic")),
                 resultSet.getLong("id_sys"),
                 new Mark(resultSet.getLong("id_mark"),
-                    resultSet.getString("discr_mark")),
+                    resultSet.getString("discr_mark"),
+                    resultSet.getInt("mark"),
+                    new Crits(resultSet.getLong("id_crit"),
+                        resultSet.getString("name_crit"))),
                 resultSet.getBigDecimal("distan"));
         }
         catch (SQLException e) {

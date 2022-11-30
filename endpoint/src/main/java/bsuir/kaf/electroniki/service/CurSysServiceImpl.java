@@ -46,6 +46,16 @@ public class CurSysServiceImpl implements CurSysService, Serializable {
         return dao.findAll(connectionDatabase.getConnection());
     }
 
+    @Override
+    public void callReportCurSystem(long idUnit) {
+        try {
+            dao.callReportCurSystem(connectionDatabase.getConnection(), idUnit);
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Getting a single instance of the class.
      *

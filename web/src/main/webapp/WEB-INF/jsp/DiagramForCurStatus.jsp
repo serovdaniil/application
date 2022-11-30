@@ -52,7 +52,10 @@ border: #4c51da solid 5px;"
 >
     <%@include file="/WEB-INF/jsp/common/Header.jsp" %>
 
-    <h2 style="text-align: center">${requestScope.safIndName}</h2>
+    <h2 style="text-align: center">Выявление, систем (элементов), требующих особого внимания для обеспечения безопасной эксплуатации
+        энергоблока №${requestScope.unitId}</h2>
+
+    <h2 style="text-align: center">${requestScope.sysEquipName} (${requestScope.kks})</h2>
 
     <div id="graph" class="graph vertical">
         <c:forEach var="percentage" items="${requestScope.values}">

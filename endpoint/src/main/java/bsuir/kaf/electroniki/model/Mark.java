@@ -9,9 +9,21 @@ public class Mark implements Serializable, Entity{
 
     private String name;
 
-    public Mark(Long id, String name) {
+    private int mark;
+
+    private Crits crit;
+
+    public Mark(Long id, String name, int mark) {
         this.id = id;
         this.name = name;
+        this.mark = mark;
+    }
+
+    public Mark(Long id, String name, int mark, Crits crit) {
+        this.id = id;
+        this.name = name;
+        this.mark = mark;
+        this.crit = crit;
     }
 
     @Override
@@ -31,6 +43,22 @@ public class Mark implements Serializable, Entity{
         this.name = name;
     }
 
+    public int getMark() {
+        return mark;
+    }
+
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
+
+    public Crits getCrit() {
+        return crit;
+    }
+
+    public void setCrit(Crits crit) {
+        this.crit = crit;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -39,13 +67,13 @@ public class Mark implements Serializable, Entity{
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Mark mark = (Mark) o;
-        return Objects.equals(id, mark.id) && Objects.equals(name, mark.name);
+        Mark mark1 = (Mark) o;
+        return mark == mark1.mark && Objects.equals(id, mark1.id) && Objects.equals(name, mark1.name) && Objects.equals(crit, mark1.crit);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, mark, crit);
     }
 
     @Override
@@ -53,6 +81,8 @@ public class Mark implements Serializable, Entity{
         final StringBuilder sb = new StringBuilder("Mark{");
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
+        sb.append(", mark=").append(mark);
+        sb.append(", crit=").append(crit);
         sb.append('}');
         return sb.toString();
     }

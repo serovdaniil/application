@@ -10,14 +10,18 @@
 
 <%@include file="/WEB-INF/jsp/common/Header.jsp" %>
 
+<h2 style="text-align: center">Выявление, систем (элементов), требующих особого внимания для обеспечения безопасной эксплуатации
+    энергоблока №${requestScope.unitId}</h2>
 
-<h2 style="text-align: center">${requestScope.safIndName}</h2>
+<h2 style="text-align: center">${requestScope.sysEquipName} (${requestScope.kks})</h2>
+
 <div style="width: 99%; height: 100%; border: #4c51da solid 5px;">
     <div style="height: 100%; width: 100%">
         <table>
             <tr>
                 <th>№ Записи</th>
                 <th>Дата внесения данных</th>
+                <th>Критерий</th>
                 <th>Оценка</th>
                 <th>Пользователь</th>
                 <th>Расстояние до наихудшего события</th>
@@ -26,7 +30,8 @@
                 <tr>
                     <td>${it.index+1}</td>
                     <td>${curStatus.date}</td>
-                    <td>${curStatus.mark.name}</td>
+                    <td>${curStatus.mark.crit.name}</td>
+                    <td>${curStatus.mark.name} - ${curStatus.mark.mark}</td>
                     <td>${curStatus.user.surname}</td>
                     <td>${curStatus.distant}</td>
                 </tr>

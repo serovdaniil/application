@@ -25,10 +25,7 @@ public class MarkDaoImpl extends AbstactEntityDao<Mark> implements MarkDao, Resu
 
     @Override
     protected PreparedStatement createEntityStatement(Connection connection, Mark entity) throws SQLException {
-        PreparedStatement statement = connection.prepareStatement("insert into trends (date_trend, prd_trend, id_user, id_unit, id_saf_ind, val_mid) " +
-            "values (?, ?, ?, ?, ?, ?);");
-
-        return statement;
+          return null;
     }
 
     @Override
@@ -58,7 +55,8 @@ public class MarkDaoImpl extends AbstactEntityDao<Mark> implements MarkDao, Resu
         try {
             return new Mark(
                 resultSet.getLong("id_mark"),
-                resultSet.getString("discr_mark"));
+                resultSet.getString("discr_mark"),
+                resultSet.getInt("mark"));
         }
         catch (SQLException e) {
             throw new EntityExtractionFailedException(e);

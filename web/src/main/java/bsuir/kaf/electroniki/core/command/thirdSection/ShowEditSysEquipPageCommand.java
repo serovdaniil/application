@@ -46,6 +46,7 @@ public class ShowEditSysEquipPageCommand implements Command {
         request.addAttributeToJsp("sysEquipId", request.getParameter("sysEquipId"));
         request.addAttributeToJsp("sysEquipName", request.getParameter("sysEquipName"));
         request.addAttributeToJsp("users", userService.findAll());
+        request.addAttributeToJsp("kks", request.getParameter("kks"));
         request.addAttributeToJsp("crits", crits);
 
         return requestFactory.createForwardResponse(PagePaths.EDIT_SYS_EQUIP);

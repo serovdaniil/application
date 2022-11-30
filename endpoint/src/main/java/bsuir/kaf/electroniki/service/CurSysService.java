@@ -7,4 +7,6 @@ import bsuir.kaf.electroniki.model.CurStatus;
 public interface CurSysService extends EntityService<CurStatus>{
 
     List<CurStatus> findCurStatusBySystem(long idSystem);
+
+    void callReportCurSystem(long idUnit);
 }

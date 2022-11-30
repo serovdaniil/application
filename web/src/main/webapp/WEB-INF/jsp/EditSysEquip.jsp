@@ -45,28 +45,29 @@ border: #4c51da solid 5px;"
 
     <%@include file="/WEB-INF/jsp/common/Header.jsp" %>
 
-    <h2 style="text-align: center">Выявление и прогнозирование тенденций изменения состояния безопасной эксплуатации энергоблока
-        №${requestScope.unitId}</h2>
+    <h2 style="text-align: center">Выявление, систем (элементов), требующих особого внимания для обеспечения безопасной
+        эксплуатации энергоблока №${requestScope.unitId}
+    </h2>
 
-    <h2 style="text-align: center">${requestScope.safIndName}</h2>
+    <h2 style="text-align: center">${requestScope.sysEquipName} (${requestScope.kks})</h2>
 
     <div>
         <form name="edit-saf_ind" method="post">
             <div>
                 <label>Пользователь:
-                <select id="user-input" name="iserId">
-                    <c:forEach var="user" items="${requestScope.users}">
-                        <option value="${user.id}">${user.surname} ${user.name} ${user.patronymic}</option>
-                    </c:forEach>
-                </select>
-            </label>
+                    <select id="user-input" name="iserId">
+                        <c:forEach var="user" items="${requestScope.users}">
+                            <option value="${user.id}">${user.surname} ${user.name} ${user.patronymic}</option>
+                        </c:forEach>
+                    </select>
+                </label>
             </div>
             <div>
                 <label>${requestScope.crits[0].name}:
                     <select id="crit0-input" name="crit0">
                         <option></option>
                         <c:forEach var="mark" items="${requestScope.mark0}">
-                            <option value="${mark.id}">${mark.name}</option>
+                            <option value="${mark.id}">${mark.name} - ${mark.mark}</option>
                         </c:forEach>
                     </select>
                 </label>
@@ -76,7 +77,7 @@ border: #4c51da solid 5px;"
                     <select id="crit0-input" name="crit1">
                         <option></option>
                         <c:forEach var="mark" items="${requestScope.mark1}">
-                            <option value="${mark.id}">${mark.name}</option>
+                            <option value="${mark.id}">${mark.name} - ${mark.mark}</option>
                         </c:forEach>
                     </select>
                 </label>
@@ -86,7 +87,7 @@ border: #4c51da solid 5px;"
                     <select id="crit0-input" name="crit2">
                         <option></option>
                         <c:forEach var="mark" items="${requestScope.mark2}">
-                            <option value="${mark.id}">${mark.name}</option>
+                            <option value="${mark.id}">${mark.name} - ${mark.mark}</option>
                         </c:forEach>
                     </select>
                 </label>
@@ -96,7 +97,7 @@ border: #4c51da solid 5px;"
                     <select id="crit0-input" name="crit3">
                         <option></option>
                         <c:forEach var="mark" items="${requestScope.mark3}">
-                            <option value="${mark.id}">${mark.name}</option>
+                            <option value="${mark.id}">${mark.name} - ${mark.mark}</option>
                         </c:forEach>
                     </select>
                 </label>
@@ -106,7 +107,7 @@ border: #4c51da solid 5px;"
                     <select id="crit0-input" name="crit4">
                         <option></option>
                         <c:forEach var="mark" items="${requestScope.mark4}">
-                            <option value="${mark.id}">${mark.name}</option>
+                            <option value="${mark.id}">${mark.name} - ${mark.mark}</option>
                         </c:forEach>
                     </select>
                 </label>
@@ -125,11 +126,11 @@ border: #4c51da solid 5px;"
             </div>
             <button type="submit" name="command"
                     value="show_table_for_saf_val&idUnit=${requestScope.unitId}&idSafInd=${requestScope.safIndId}"
-                    formaction="${pageContext.request.contextPath}/controller?command=show_table_for_cur_status&idUnit=${requestScope.unitId}&idSafInd=${requestScope.safIndId}&safIndName=${requestScope.safIndName}&idSystem=${requestScope.sysEquipId}">
+                    formaction="${pageContext.request.contextPath}/controller?command=show_table_for_cur_status&idUnit=${requestScope.unitId}&sysEquipName=${requestScope.sysEquipName}&idSystem=${requestScope.sysEquipId}&kks=${requestScope.kks}">
                 Отобразить значения показателя в таблице
             </button>
             <button type="submit" name="command" value="second"
-                    formaction="${pageContext.request.contextPath}/controller?command=show_diagram_for_cur_status&idUnit=${requestScope.unitId}&idSafInd=${requestScope.safIndId}&safIndName=${requestScope.safIndName}&idSystem=${requestScope.sysEquipId}">
+                    formaction="${pageContext.request.contextPath}/controller?command=show_diagram_for_cur_status&idUnit=${requestScope.unitId}&sysEquipName=${requestScope.sysEquipName}&idSystem=${requestScope.sysEquipId}&kks=${requestScope.kks}">
                 Отобразить значения показателя в диаграмме
             </button>
         </form>

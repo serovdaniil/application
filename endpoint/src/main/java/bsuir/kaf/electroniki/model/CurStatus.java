@@ -74,7 +74,7 @@ public class CurStatus implements Serializable, Entity {
     }
 
     public void setIdMark(Long idMark) {
-        this.mark = new Mark(idMark, "");
+        this.mark = new Mark(idMark, "", 0);
     }
 
     public Mark getMark() {

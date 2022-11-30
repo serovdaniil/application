@@ -68,9 +68,9 @@ public class ShowDiagramCurStatusCommand implements Command {
 
         request.addAttributeToJsp("values", values);
         request.addAttributeToJsp("wight", wight);
-        request.addAttributeToJsp("safIndName", request.getParameter("safIndName"));
         request.addAttributeToJsp("unitId", request.getParameter("unitId"));
-        request.addAttributeToJsp("meas", request.getParameter("meas"));
+        request.addAttributeToJsp("sysEquipName", request.getParameter("sysEquipName"));
+        request.addAttributeToJsp("kks", request.getParameter("kks"));
 
         return requestFactory.createForwardResponse(PagePaths.DIAGRAM_FOR_CUR_STATUS);
 

@@ -11,4 +11,6 @@ public interface CurStatusDao extends EntityDao<CurStatus>{
     void addNewCurStatus(Connection connection, CurStatus entity);
 
     List<CurStatus> findCurStatusBySystem(Connection connection, long idSystem) throws SQLException;
+
+    void callReportCurSystem(Connection connection, long idUnit) throws SQLException;
 }

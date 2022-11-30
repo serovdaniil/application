@@ -7,6 +7,7 @@ import bsuir.kaf.electroniki.core.command.firstAndSecondSection.ShowEditSafIndPa
 import bsuir.kaf.electroniki.core.command.firstAndSecondSection.ShowTableSafValCommand;
 import bsuir.kaf.electroniki.core.command.firstAndSecondSection.firstSection.ShowFirstPowerUnitPage;
 import bsuir.kaf.electroniki.core.command.firstAndSecondSection.secondSection.ShowSecondPowerUnitPage;
+import bsuir.kaf.electroniki.core.command.thirdSection.CallReportCurSysCommand;
 import bsuir.kaf.electroniki.core.command.thirdSection.CreateCurStatusCommand;
 import bsuir.kaf.electroniki.core.command.thirdSection.CreateNewTrendCommand;
 import bsuir.kaf.electroniki.core.command.thirdSection.ShowDiagramCurStatusCommand;
@@ -64,6 +65,8 @@ public enum CommandRegistry {
     SHOW_TABLE_FOR_CUR_STATUS_PAGE(ShowTableForCurStatusCommand.getInstance(), "show_table_for_cur_status"),
 
     SHOW_DIAGRAM_FOR_CUR_STATUS(ShowDiagramCurStatusCommand.getInstance(), "show_diagram_for_cur_status"),
+
+    CALL_REPORT_CUR_SYS(CallReportCurSysCommand.getInstance(), "call_report_cur_sys"),
 
     EDIT_SYS_EQUIP_PAGE(ShowEditSysEquipPageCommand.getInstance(), "edit_sys_equip"),
 
